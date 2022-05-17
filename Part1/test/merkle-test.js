@@ -36,9 +36,9 @@ describe("MerkleTree", function () {
         await poseidonT3.deployed();
 
         const MerkleTree = await ethers.getContractFactory("MerkleTree", {
-            libraries: {
-                PoseidonT3: poseidonT3.address
-            },
+            // libraries: {
+            //     PoseidonT3: poseidonT3.address
+            // },
           });
         merkleTree = await MerkleTree.deploy();
         await merkleTree.deployed();

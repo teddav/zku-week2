@@ -11,10 +11,18 @@ contract MerkleTree is Verifier {
 
     constructor() {
         // [assignment] initialize a Merkle tree of 8 with blank leaves
+        for (uint level = 3; level > 0; level--) {
+            for (uint i = 0; i < 2**level; i++) {
+                hashes.push(0);
+            }
+        }
     }
 
     function insertLeaf(uint256 hashedLeaf) public returns (uint256) {
         // [assignment] insert a hashed leaf into the Merkle tree
+        hashes[index] = hashedLeaf;
+        index++;
+
     }
 
     function verify(
@@ -25,5 +33,6 @@ contract MerkleTree is Verifier {
         ) public view returns (bool) {
 
         // [assignment] verify an inclusion proof and check that the proof root matches current root
+        return Verifier.verifyProof(a, b, c, input);
     }
 }
